@@ -1,0 +1,35 @@
+{
+  "name": "i18n-replace",
+  "version": "0.0.6",
+  "description": "前端国际化辅助工具——自动替换中文并翻译",
+  "bin": {
+    "replace": "./bin/replace.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "vue",
+    "react",
+    "i18n",
+    "jsx"
+  ],
+  "author": "谭光志",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woai3c/i18n-replace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/woai3c/i18n-replace/issues"
+  },
+  "homepage": "https://github.com/woai3c/i18n-replace#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "md5": "^2.3.0",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "jest": "^26.4.2"
+  }
+}
