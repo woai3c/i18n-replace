@@ -1,25 +1,7 @@
-## 使用
-下载项目
-```
-git clone ssh://git@gitlab.weikle.com.cn:20022/hkm3/i18n-replace.git
-```
-安装
-```js
-npm i
-```
-全局注册命令
-```
-npm link
-```
-全局注册命令后可以在全局使用 `rep` 和 `upload` 命令。
-
-* rep 命令，将根据配置项进行翻译。
-* upload 命令，将翻译后的数据上传到服务器。
-
-具体的使用例子请查看 `test` 目录下的单元测试。
-
+## 简介
 ## DEMO
 ### jsx
+翻译前
 ```js
 <div>
     <input
@@ -34,6 +16,7 @@ npm link
     </MyComponent>
 </div>
 ```
+翻译后
 ```js
 <div>
     <input
@@ -49,6 +32,7 @@ npm link
 </div>
 ```
 ### sfc
+翻译前
 ```vue
 <template>
     <div>
@@ -64,6 +48,7 @@ export default {
 }
 </script>
 ```
+翻译后
 ```vue
 <template>
     <div>
@@ -79,6 +64,7 @@ export default {
 }
 </script>
 ```
+## 使用
 
 ## 文档
 在你的项目根目录下建立一个 `i18n.config.js` 文件，本工具将会根据配置项来执行不同的操作。
@@ -103,7 +89,6 @@ module.exports = {
     pluginPrefix: '$t', // i18n 插件前缀 例如 vue-i18n: $t， react-i18next: t
     include: [],  // 需要翻译的目录或文件
     exclude: [], // 不需要翻译的目录或文件 如果 exclude include 同时存在同样的目录或文件 则 exclude 优先级高
-    url: 'http://192.168.150.244' // 服务器地址，将翻译后的数据传到服务器
 }
 ```
 ### appid 和 key
@@ -253,9 +238,6 @@ pluginPrefix: '$t'
 
 ### exclude
 `exclude` 优先级比 `include` 高，如果有文件包含在 `exclude` 里面，它将不会被翻译。
-
-### url
-服务器地址，执行 `upload` 命令会将翻译后的文件上传到服务器。
 
 ### indent
 生成文件的缩进，默认为 `4`。
