@@ -17,6 +17,69 @@ npm link
 * upload 命令，将翻译后的数据上传到服务器。
 
 具体的使用例子请查看 `test` 目录下的单元测试。
+
+## DEMO
+### jsx
+```js
+<div>
+    <input
+        type="二"
+        placeholder="一"
+        value="s 四 f"
+    />
+
+    <MyComponent>
+    非常好 <header slot="header">测试</header> 非常好
+        非常好 <footer slot="footer">再一次测试</footer> 非常好
+    </MyComponent>
+</div>
+```
+```js
+<div>
+    <input
+        type={this.$t('10001')}
+        placeholder={this.$t('10000')}
+        value={`s ${this.$t('10003')} f`}
+    />
+
+    <MyComponent>
+    {`${this.$t('0')} `}<header slot="header">{this.$t('1')}</header>{` ${this.$t('0')}`}
+        {`${this.$t('0')} `}<footer slot="footer">{this.$t('2')}</footer>{` ${this.$t('0')}`}
+    </MyComponent>
+</div>
+```
+### sfc
+```vue
+<template>
+    <div>
+        有人<div value="二" :val="abc + '三 afb'">一</div>在国
+    </div>
+</template>
+
+<script>
+export default {
+    created() {
+        const test = '测试'
+    }
+}
+</script>
+```
+```vue
+<template>
+    <div>
+        {{ $t('0') }}<div :value="$t('10001')" :val="abc + $t('10002') + ' afb'">{{ $t('10000') }}</div>{{ $t('1') }}
+    </div>
+</template>
+
+<script>
+export default {
+    created() {
+        const test = this.$t('2')
+    }
+}
+</script>
+```
+
 ## 文档
 在你的项目根目录下建立一个 `i18n.config.js` 文件，本工具将会根据配置项来执行不同的操作。
 
@@ -128,7 +191,7 @@ function translateExcelData(file, done) {
 
 module.exports = translateExcelData
 ```
-它接收两个参数，分别是文件地址 file 和 完成函数 done。
+它接收两个参数，分别是文件地址 `file` 和 完成函数 `done()`。
 
 支持异步操作，只要在转换完成时调用 `done(result)` 即可。
 
@@ -137,7 +200,7 @@ module.exports = translateExcelData
 ```js
 prefix + id + suffix
 ```
-* id 默认为 0，自动递增。
+* id 默认为 `0`，自动递增。
 * 变量前缀，默认为空。
 * 变量后缀，默认为空。
 
@@ -150,9 +213,9 @@ pluginPrefix: '$t'
 例如 `vue-i18n` 国际化工具使用的是 `$t`，而 `react-i18next` 使用的是 `t`。
 
 ### translation
-是否需要自动翻译，转为为 false。
+是否需要自动翻译，转为为 `false`。
 
-如果设为 true，将会调用百度免费翻译 API 进行翻译。
+如果设为 `true`，将会调用百度免费翻译 API 进行翻译。
 
 ### to
 翻译的目标语言，默认为 `en`，即英语。
@@ -160,9 +223,9 @@ pluginPrefix: '$t'
 具体的配置项请查看[百度翻译 API 文档](https://fanyi-api.baidu.com/product/113)。
 
 ### mode
-翻译模式，默认为 1。
+翻译模式，默认为 `1`。
 
-翻译模式有两种：0 和 1。
+翻译模式有两种：`0` 和 `1`。
 
 如果你提供了一个默认的映射文件：
 ```json
@@ -180,7 +243,7 @@ pluginPrefix: '$t'
     "四": "10003"
 }
 ```
-这时，翻译模式为 0 将会对该表所有数据进行翻译。而翻译模式为 1 只对新产生的数据进行翻译。
+这时，翻译模式为 `0` 将会对所有数据进行翻译。而翻译模式为 `1` 只对新产生的数据进行翻译。
 
 ### output
 翻译后的文件输出名称，默认为 `i18n.data.js`。
