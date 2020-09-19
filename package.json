@@ -1,9 +1,9 @@
 {
   "name": "i18n-replace",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "前端国际化辅助工具——自动替换中文并翻译",
   "bin": {
-    "replace": "./bin/replace.js"
+    "rep": "./bin/replace.js"
   },
   "scripts": {
     "test": "jest"
