@@ -14,6 +14,7 @@
     "i18n",
     "jsx"
   ],
+  "license": "MIT",
   "author": "谭光志",
   "repository": {
     "type": "git",
