@@ -34,15 +34,14 @@ async function setDefaultData(config = {}) {
         }
     }
 
-    if (config.pluginPrefix !== undefined) globalData.pluginPrefix = config.pluginPrefix
-    if (config.type !== undefined) globalData.type = config.type
+    if (config.pluginPrefix !== undefined && config.pluginPrefix) globalData.pluginPrefix = config.pluginPrefix
     if (config.mode !== undefined) globalData.mode = config.mode
-    if (config.to !== undefined) globalData.to = config.to
+    if (config.to !== undefined && config.to) globalData.to = config.to
     if (config.delay !== undefined) globalData.delay = ~~config.delay
     if (config.prefix !== undefined) globalData.prefix = config.prefix
     if (config.suffix !== undefined) globalData.suffix = config.suffix
     if (config.id !== undefined) globalData.id = ~~config.id
-    if (config.mapFile !== undefined) {
+    if (config.mapFile !== undefined && config.mapFile) {
         let load
         if (config.loader) {
             load = require(path.resolve(process.cwd(), config.loader))
