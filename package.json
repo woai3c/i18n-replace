@@ -1,6 +1,6 @@
 {
   "name": "i18n-replace",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "前端国际化辅助工具——自动替换中文并翻译",
   "bin": {
     "rep": "./bin/replace.js"
