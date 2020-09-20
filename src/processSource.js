@@ -277,7 +277,6 @@ function extractScript(str = '', replaceData = []) {
     return replaceScript(str, arr)
 }
 
-
 function replaceTemplate(str = '', data = []) {
     let result = str
     data.forEach(item => {
@@ -350,6 +349,7 @@ function replaceScript(str = '', data = []) {
         if (word == s) {
             s = `this.${pluginPrefix}('${replace}')`
         } else {
+            // eslint-disable-next-line no-useless-concat
             s = '`' + s.replace(word, '${' + `this.${pluginPrefix}('${replace}')` + '}') + '`'
         }
 

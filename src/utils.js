@@ -2,7 +2,7 @@ const { globalData } = require('./data')
 const path = require('path')
 
 // 节流函数
-const throttle = (function(delay = 1500) {
+const throttle = (function (delay = 1500) {
     const wait = []
     let canCall = true
     return function throttle(callback) {
@@ -20,7 +20,7 @@ const throttle = (function(delay = 1500) {
             }
         }, delay)
     }
-})(globalData.delay)
+}(globalData.delay))
 
 async function setDefaultData(config = {}) {
     globalData.appid = config.appid

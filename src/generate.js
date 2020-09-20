@@ -35,7 +35,7 @@ function generateI18nData() {
                 return
             }
 
-            throttle(function() {
+            throttle(() => {
                 translate(msg).then(res => {
                     if (res) {
                         i18nData[to][key] = res[0].dst

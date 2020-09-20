@@ -8,9 +8,7 @@ function translate(msg = '') {
     const sign = md5(globalData.appid + q + salt + globalData.key)
     const params = encodeURI(`q=${q}&from=zh&to=${globalData.to}&appid=${globalData.appid}&salt=${salt}&sign=${sign}`)
     const url = `https://fanyi-api.baidu.com/api/trans/vip/translate?${params}`
-    return axios.get(url).then(res => {
-        return res.data.trans_result
-    })
+    return axios.get(url).then(res => res.data.trans_result)
 }
 
 module.exports = {
