@@ -13,7 +13,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@master
       with:
-        node-version: 10.0.0
+        node-version: 12.16.2
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
       with: # All of theses inputs are optional
