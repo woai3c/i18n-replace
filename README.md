@@ -1,5 +1,59 @@
-## 简介
+# i18n-replace
+i18n-replace 是一个能够自动替换中文并支持自动翻译的前端国际化辅助工具。
+
+它具有以下功能：
+1. 根据你提供的默认映射数据（{ 中文：变量 }），i18n-replace 会把中文替换成对应的变量。
+2. 如果没有提供映射数据，则使用默认规则替换中文并生成变量。
+3. 将替换出来的中文自动翻译成目标语言（默认为 en，即英语）。
+
+自动翻译功能使用的是百度免费翻译 API，每秒只能调用一次，并且需要你注册百度翻译平台的账号。
+
+然后将 appid 和密钥填入 i18n-replace 的配置文件 `i18n.config.js`，这个配置文件需要放置在你项目根目录下。
+
+## 使用
+安装
+```
+npm i -g i18n-replace
+```
+全局安装后，打开你的项目，建立一个 `i18n.config.js` 文件，配置项如下：
+```js
+module.exports = {
+    delay: 1500, // 自动翻译延时，必须大于 1000 ms，否则调用百度翻译 API 会失败
+    mapFile: '', // 需要生成默认 map 的文件
+    appid: '', // 百度翻译 appid
+    key: '', // 百度翻译密钥
+    output: 'i18n.data.js', // i18n 输出文件
+    indent: 4, // i18n 输出文件缩进
+    entry: '', // 要翻译的入口目录或文件，默认为命令行当前的 src 目录
+    prefix: '', // i18n 变量前缀  i18n 变量生成规则 prefix + id + suffix
+    suffix: '', // i18n 变量后缀
+    id: 0, // i18n 自增变量 id
+    translation: false, // 是否需要自动翻译中文
+    to: 'en', // 中文翻译的目标语言
+    mode: 1, // 0 翻译所有 i18n 数据，1 只翻译新数据
+    loader: 'loader.js',
+    pluginPrefix: '$t', // i18n 插件前缀 例如 vue-i18n: $t， react-i18next: t
+    include: [], // 需要翻译的目录或文件
+    exclude: [], // 不需要翻译的目录或文件 如果 exclude include 同时存在同样的目录或文件 则 exclude 优先级高
+    extra: /(\.a)|(\.b)$/, // 默认支持 .vue 和 .js 文件 如果需要支持其他类型的文件，请用正则描述 例如这个示例额外支持 .a .b 文件
+}
+```
+上面是 i18n-replace 工具的配置项，具体说明请看[文档](#文档)。
+
+这些配置项都不是必要的，如果你需要翻译功能，一般只需要填入 appid、key 并且将 translation 设为 true。
+
+设置完配置项后，只需要执行 `rep`（这是一个全局命令），i18n-replace 就会对你的入口目录进行递归替换、翻译。
+
+i18n-replace 能识别以下中文：
+```js
+不能包含有空格，可以包含中文、中文符号，数字，-
+测试123
+测试-12-测试
+几点了？12点。
+```
+
 ## DEMO
+更多测试用例，请查看项目下的 `test` 目录。
 ### jsx
 翻译前
 ```js
@@ -11,7 +65,7 @@
     />
 
     <MyComponent>
-    非常好 <header slot="header">测试</header> 非常好
+        非常好 <header slot="header">测试</header> 非常好
         非常好 <footer slot="footer">再一次测试</footer> 非常好
     </MyComponent>
 </div>
@@ -20,14 +74,14 @@
 ```js
 <div>
     <input
-        type={this.$t('10001')}
-        placeholder={this.$t('10000')}
-        value={`s ${this.$t('10003')} f`}
+        type={this.$t('0')}
+        placeholder={this.$t('1')}
+        value={`s ${this.$t('2')} f`}
     />
 
     <MyComponent>
-    {`${this.$t('0')} `}<header slot="header">{this.$t('1')}</header>{` ${this.$t('0')}`}
-        {`${this.$t('0')} `}<footer slot="footer">{this.$t('2')}</footer>{` ${this.$t('0')}`}
+        {`${this.$t('3')} `}<header slot="header">{this.$t('4')}</header>{` ${this.$t('3')}`}
+        {`${this.$t('3')} `}<footer slot="footer">{this.$t('5')}</footer>{` ${this.$t('3')}`}
     </MyComponent>
 </div>
 ```
@@ -52,19 +106,18 @@ export default {
 ```vue
 <template>
     <div>
-        {{ $t('0') }}<div :value="$t('10001')" :val="abc + $t('10002') + ' afb'">{{ $t('10000') }}</div>{{ $t('1') }}
+        {{ $t('0') }}<div :value="$t('1')" :val="abc + $t('2') + ' afb'">{{ $t('3') }}</div>{{ $t('4') }}
     </div>
 </template>
 
 <script>
 export default {
     created() {
-        const test = this.$t('2')
+        const test = this.$t('5')
     }
 }
 </script>
 ```
-## 使用
 
 ## 文档
 在你的项目根目录下建立一个 `i18n.config.js` 文件，本工具将会根据配置项来执行不同的操作。
@@ -241,3 +294,14 @@ pluginPrefix: '$t'
 
 ### indent
 生成文件的缩进，默认为 `4`。
+
+### extra
+extra 额外支持的文件格式，它的值为正则表达式。
+```js
+extra: /(\.a)|(\.b)$/
+```
+默认支持 .vue 和 .js 文件。
+
+如果需要支持其他类型的文件，请用正则描述。
+
+例如上述示例额外支持 .a .b 文件
