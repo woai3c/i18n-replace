@@ -42,16 +42,8 @@ function readFile(fileName, curID, resolve) {
                 done[curID] = true
                 // 处理完最后一个文件后，生成 i18n 数据
                 if (!done.includes(false)) {
-                    generateI18nData().then(data => {
-                        fs.writeFile(
-                            path.resolve(process.cwd(), config.output? config.output : 'i18n.data.js'), 
-                            'module.exports = ' + JSON.stringify(data, null, config.indent? config.indent : 4), 
-                            'utf-8', 
-                            err => {
-                                if (err) throw err
-                                resolve()
-                            },
-                        )
+                    generateI18nData().then(() => {
+                        resolve()
                     })
                 }
             })
