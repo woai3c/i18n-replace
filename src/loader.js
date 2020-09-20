@@ -1,4 +1,4 @@
-function translateExcelData(file, done) {
+function loader(file, done) {
     const data = require(file)
     const result = {}
     if (data.zh) {
@@ -11,4 +11,4 @@ function translateExcelData(file, done) {
     done(result)
 }
 
-module.exports = translateExcelData
+module.exports = loader
