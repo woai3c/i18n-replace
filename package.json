@@ -12,7 +12,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "commit-msg": "env FORCE_COLOR=1 node script/verify-commit.js"
+      "commit-msg": "node script/verify-commit.js"
     }
   },
   "keywords": [
