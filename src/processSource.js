@@ -35,7 +35,8 @@ function _processSource(data = [], isTemplate = false) {
     }
 
     const reg1 = /[\u4e00-\u9fa5]/
-    const reg2 = /[\u4e00-\u9fa5]|[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b]|——|-|\d/
+    const reg2 = /[\u4e00-\u9fa5]|[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b]|-|\d/
+    const symbols = ['—', '【', '】', '！']
     let hasMulNote = false // 是否有多行注释
     while (index < len) {
         if (isTemplate) {
@@ -97,7 +98,7 @@ function _processSource(data = [], isTemplate = false) {
 
             if (reg1.test(str[i])) {
                 const start = i
-                while (reg2.test(str[i])) {
+                while (reg2.test(str[i]) || symbols.includes(str[i])) {
                     i++
                 }
 
