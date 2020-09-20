@@ -9,6 +9,12 @@
     "test": "jest",
     "lint": "eslint --ext .js test/ src/ bin/"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "env FORCE_COLOR=1 node script/verify-commit.js"
+    }
+  },
   "keywords": [
     "vue",
     "react",
@@ -32,9 +38,11 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "chalk": "^4.1.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.3.0",
     "jest": "^26.4.2"
   }
 }
