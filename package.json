@@ -1,12 +1,13 @@
 {
   "name": "i18n-replace",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "前端国际化辅助工具——自动替换中文并翻译",
   "bin": {
     "rep": "./bin/replace.js"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --ext .js test/ src/ bin/"
   },
   "keywords": [
     "vue",
@@ -30,7 +31,10 @@
     "progress": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "jest": "^26.4.2"
   }
 }
