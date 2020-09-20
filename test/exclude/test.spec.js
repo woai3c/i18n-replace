@@ -2,10 +2,8 @@ const replace = require('../replace')
 const fs = require('fs')
 
 const config = {
-    loader: __dirname + '/loader.js',
-    mapFile: __dirname + '/data.json',
     entry: __dirname + '/pages',
-    exclude: [__dirname + '/pages/page2.js']
+    exclude: [__dirname + '/pages/page2.js'],
 }
 
 let pageContent
@@ -23,7 +21,7 @@ describe('exclude', () => {
         replace(config).then(() => {
             fs.readFile(__dirname + '/pages/page1.js', 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe(`const test = this.$t('10000')`)
+                expect(source).toBe(`const test = this.$t('0')`)
                 done()
             })
         })

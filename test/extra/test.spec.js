@@ -2,19 +2,16 @@ const replace = require('../replace')
 const fs = require('fs')
 
 const config = {
-    mapFile: __dirname + '/data.js',
     entry: __dirname + '/page.a',
     extra: /(\.a)|(\.b)$/,
 }
 
 const config2 = {
-    mapFile: __dirname + '/data.js',
     entry: __dirname + '/page.b',
     extra: /(\.a)|(\.b)$/,
 }
 
 const config3 = {
-    mapFile: __dirname + '/data.js',
     entry: __dirname + '/page.c',
     extra: /(\.a)|(\.b)$/,
 }
@@ -40,7 +37,7 @@ describe('extra', () => {
         replace(config).then(() => {
             fs.readFile(config.entry, 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe('const test = this.$t(\'10000\')')
+                expect(source).toBe(`const test = this.$t('0')`)
                 done()
             })
         })
@@ -50,7 +47,7 @@ describe('extra', () => {
         replace(config2).then(() => {
             fs.readFile(config2.entry, 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe('const test = this.$t(\'10000\')')
+                expect(source).toBe(`const test = this.$t('0')`)
                 done()
             })
         })
@@ -60,7 +57,7 @@ describe('extra', () => {
         replace(config3).then(() => {
             fs.readFile(config3.entry, 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe('const test = \'测试\'')
+                expect(source).toBe(`const test = '测试'`)
                 done()
             })
         })

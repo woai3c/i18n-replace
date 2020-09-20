@@ -2,10 +2,13 @@ const replace = require('../replace')
 const fs = require('fs')
 
 const config = {
-    loader: __dirname + '/loader.js',
-    mapFile: __dirname + '/data.json',
     entry: __dirname + '/pages',
-    include: [__dirname + '/pages/page1.js']
+    include: [__dirname + '/pages/page1.js'],
+}
+
+const config2 = {
+    entry: __dirname + '/pages2',
+    include: ['b'],
 }
 
 let pageContent
@@ -26,7 +29,7 @@ describe('include', () => {
         replace(config).then(() => {
             fs.readFile(__dirname + '/pages/page1.js', 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe(`const test = this.$t('10000')`)
+                expect(source).toBe(`const test = this.$t('0')`)
                 done()
             })
         })
@@ -42,19 +45,12 @@ describe('include', () => {
         })
     })
 
-    const config2 = {
-        loader: __dirname + '/loader.js',
-        mapFile: __dirname + '/data.json',
-        entry: __dirname + '/pages2',
-        include: ['b']
-    }
-
     test('mix', done => {
         replace(config2).then(() => {
             let done1, done2
             fs.readFile(__dirname + '/pages2/b/b.js', 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe(`const test = this.$t('10000')`)
+                expect(source).toBe(`const test = this.$t('0')`)
                 done1 = true
                 if (done1 && done2) done()
             })

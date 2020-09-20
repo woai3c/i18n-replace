@@ -30,7 +30,7 @@ describe('loader', () => {
         replace(config).then(() => {
             fs.readFile(config.entry, 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe('const test = this.$t(\'10000\')')
+                expect(source).toBe(`const test = this.$t('10000')`)
                 done()
             })
         })
@@ -40,7 +40,7 @@ describe('loader', () => {
         replace(config2).then(() => {
             fs.readFile(config2.entry, 'utf-8', (err, source) => {
                 if (err) throw err
-                expect(source).toBe('const test = this.$t(\'10000\')')
+                expect(source).toBe(`const test = this.$t('10000')`)
                 done()
             })
         })

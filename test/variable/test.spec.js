@@ -2,8 +2,6 @@ const replace = require('../replace')
 const fs = require('fs')
 
 const config = {
-    loader: __dirname + '/loader.js',
-    mapFile: __dirname + '/data.json',
     entry: __dirname + '/page.js',
     id: 0,
     prefix: 'pre',

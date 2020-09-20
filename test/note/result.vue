@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 一 -->
-        <div :value="$t('10001')" :val="abc + $t('10002') + ' afb'">{{ $t('10000') }}</div>
+        <div :value="$t('0')" :val="abc + $t('1') + ' afb'">{{ $t('2') }}</div>
     </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
      * 三
     */
     created() {
-        const test = this.$t('0')
+        const test = this.$t('3')
     }
 }
 </script>
