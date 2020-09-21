@@ -1,4 +1,7 @@
 # i18n-replace
+
+![](https://img-blog.csdnimg.cn/20200921175659391.gif#pic_center)
+
 i18n-replace 是一个能够自动替换中文并支持自动翻译的前端国际化辅助工具。
 
 **它具有以下功能**：
