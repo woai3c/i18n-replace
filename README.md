@@ -256,7 +256,7 @@ pluginPrefix: '$t'
 例如 `vue-i18n` 国际化工具使用的是 `$t`，而 `react-i18next` 使用的是 `t`。
 
 ### translation
-是否需要自动翻译，转为为 `false`。
+是否需要自动翻译，默认为 `false`。
 
 如果设为 `true`，将会调用百度免费翻译 API 进行翻译。
 
