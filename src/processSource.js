@@ -208,6 +208,27 @@ function extractTemplate(str = '', replaceData = []) {
 }
 
 function checkJSX(str = '', end = 0) {
+    // 判断代码: test('这是一个测试')
+    let start = 0
+    let hasLeft = false
+    const len = str.length
+    while (start < len) {
+        const c = str[start++]
+        if (c == `'` || c == `"`) break
+        if (c == '(') {
+            hasLeft = true
+            break
+        }
+    }
+
+    if (hasLeft) {
+        while (start < len) {
+            const c = str[start++]
+            if (c == ')') return false
+        }
+    }
+
+    // 判断代码: <h1>测试</h1>
     while (str[end] != '"' && end >= 0) {
         end--
     }
