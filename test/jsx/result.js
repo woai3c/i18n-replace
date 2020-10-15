@@ -10,3 +10,5 @@
         {`${this.$t('3')} `}<footer slot="footer">{this.$t('5')}</footer>{` ${this.$t('3')}`}
     </MyComponent>
 </div>
+
+test(this.$t('6'))
